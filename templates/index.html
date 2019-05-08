@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'logo.ico' }">
+    <title>Система простоев</title>
+    <link href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/bootstrap-table/bootstrap-table.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="logo">
+                        <h1><a href="/"><img src="{% static 'img/logo.png' %}" alt="Мониторинг простоев">Мониторинг простоев</a></h1>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/logout/">Выход</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h3 class="text-muted">Активные простои</h3>
+        </div>
+        <div class="row marketing">
+            <div class="col-lg-9">
+                <div id="toolbar">
+                    <select class="form-control">
+                        <option value="">Экспорт страницы</option>
+                        <option value="all">Экспорт всех записей</option>
+                        <option value="selected">Экспорт выделенных записей</option>
+                    </select>
+                </div>
+                <table id="downtime-table" class="table table-striped" data-toggle="table" data-url="/get/" data-row-style="rowStyle" data-row-attributes="rowAttributes" data-query-params="queryParams" data-pagination="true" data-search="True" data-locale="ru-RU" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" data-show-columns="true">
+                </table>
+            </div>
+            <div class="col-lg-3">
+                <div class="form">
+                    <form action="/add/" method="post">
+                        {% csrf_token %} {% for field in form %}
+                        <div class="form-group">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+                        <br />
+                        <input type="submit" value="Встать на простой" class="btn btn-danger" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Комментарий по закрытию</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+                  <div class="form-group">
+                      <textarea id="comafclose" type="text" style="width:100%;"></textarea>
+                  </div>
+                  <input type="submit" id="ok" value="Ok" class="btn btn-info" />
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap-table/bootstrap-table.js' %}"></script>
+<script src="{% static 'js/bootstrap-table-ru-RU.js' %}"></script>
+<script src="{% static 'js/bootstrap-table-export.js' %}"></script>
+<script src="{% static 'libs/tableExport.jquery.plugin/tableExport.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{{ form.media }}
+
+</html>

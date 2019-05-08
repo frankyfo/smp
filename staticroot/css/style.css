@@ -1,0 +1,67 @@
+.logo {}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+}
+
+.logo a {
+    color: #777;
+    text-decoration: none;
+}
+
+.noresize {
+    resize: none;
+}
+
+
+
+
+/*Для корректного отображения формы выбора ТП, переписаны класс для widget=autocomplete.ModelSelect2 */
+
+.select2-container {
+    width: 100% !important;
+    min-width: 10em !important;
+    max-width: 30em !important;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin input {
+    margin-bottom: 20px;
+}
+
+.container {
+    min-width: 1700px;
+}
+
+.form {
+    padding: 40px 20px;
+    background: #eee;
+    border-radius: 1%;
+    border: 1px solid #bbb;
+}
+
+.btn.btn-danger {
+    display: block;
+    margin: 0 auto;
+}
+
+
+.darkred {
+    color: white;
+    background-color: #660000 !important;
+}
+
+.darkred.selected {
+    color: black;
+    background-color: black;
+}
+h4 {
+    color: red;
+}

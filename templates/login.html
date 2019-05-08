@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'logo.ico' }">
+    <title>Система простоев</title>
+    <link href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <div class="logo">
+                <h1><a href="/"><img src="{% static 'img/logo.png' %}" alt="Мониторинг простоев">Мониторинг простоев</a></h1>
+            </div>
+        </div>
+        <form class="form-signin" method="post" action="/login/">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">Авторизация</h2>
+            <p class="text-danger">&nbsp;{{ err_msg }}</p>
+            <input name="username" id="inputEmail" class="form-control" placeholder="Имя пользователя" required autofocus>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </form>
+    </div>
+</body>
+
+</html>
